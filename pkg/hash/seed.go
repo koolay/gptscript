@@ -10,5 +10,5 @@ func Seed(input any) int {
 	if err := json.NewEncoder(h).Encode(input); err != nil {
 		panic(err)
 	}
-	return int(h.Sum32())
+	return int(int32(h.Sum32()))
 }
