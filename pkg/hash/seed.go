@@ -3,6 +3,7 @@ package hash
 import (
 	"encoding/json"
 	"hash/fnv"
+	"math"
 )
 
 func Seed(input any) int {
@@ -10,5 +11,6 @@ func Seed(input any) int {
 	if err := json.NewEncoder(h).Encode(input); err != nil {
 		panic(err)
 	}
-	return int(int32(h.Sum32()))
+
+	return int(h.Sum32()) % math.MaxInt32
 }
